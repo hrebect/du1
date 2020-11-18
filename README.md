@@ -1,7 +1,7 @@
 ## Dokumenrace k programu
 Program má za úkol umět nakreslit alespoň jedno z každé kategorie zobraení a vypočítat kde se v něm nachází hledané body.
 
-###Funkce programu
+### Funkce programu
 Program se zeptá na vstupní zobrazení (k dispozizi jsou Lv, Ma, La, Po, Pt a Sa), na měřítko a na to, po kolika stupnich se mají
 vykreslovat poledníky a rovnoběžky. Když dané zobrazení není podporováno, program skončí.
 U zobrzení Pt se program ještě navrch zeptá na tečnou rovnoběžku, která je potřeba k výpočtu a určuje velikost výseče mapy.
@@ -27,6 +27,6 @@ který zajišťuje hladkost linie (kolika body bude lomenná čára procházet).
 Na konci každá funkce pro zobrazení odkáže na jinou funkcy body(), která se zeptá uživatele na počítané body. Tato funkce se pak dokola spouští, dokud nejsou
 body (0,0), poté se program ukončí. Spouští se zde ještě funkce kartez() a polar(), které mají za úkol jen vracet hodnotu vypočtených bodů v daném formátu.
 
-###Vstupy
+### Vstupy
 Vstupy jsou zde zajištěny funkcí input(). na 5 ruzných proměnných. Na zobrazení, měřítko, poloměr Země a na krok poledníků a rovnoběžek. K ověření korektnosti vstupu zobrazení a následného
 spuštění odpovýdající funkce slouží několik if a elif příkazů. Při nekorektním vstupu se program ukončí. U poloměru se ještě konroluje za poloměr není 0, když je, tak se počítá se zadaným(6371.11).
