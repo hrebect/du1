@@ -184,7 +184,12 @@ def polar(ro_vyst,eps_vyst):
 def body():
     x1=float(input('Zadejte hodnotou souradnice x ve formatu deg:'))
     y1=float(input('Zadejte hodnotou souradnice y ve formatu deg:'))
-    
+    if x1 <-180 or\
+        x1 >180 or\
+        y1 <-90 or\
+        y1 >90:
+        print('Bod se nachází mimo zeměpisnou síť')
+        exit()
     return x1, y1
 
 
@@ -196,7 +201,8 @@ rovn=int(input('Zadejte po kolika stupnich se vykresli rovnobezeky:'))
 poled=int(input('Zadejte po kolika stupnich se vykresli poledniky:'))
 
 #kontrola vstupů
-if rovn <= 0 or \ 
+
+if rovn <= 0 or \
     rovn > 90:
     print(f'Nelze rovnoběžky vykreslit po {rovn} stupních')
     exit()
@@ -205,7 +211,7 @@ if poled <= 0 or \
     print(f'Nelze poledníky vykreslit po {poled} stupních')
     exit()
 if r < 0:
-    print('?ěřítko musí být nezáporné')
+    print('Měřítko musí být nezáporné')
     exit()
 if r==0:
     r=6371.11
@@ -227,7 +233,7 @@ elif zobrazeni=='La':
 elif zobrazeni=='Pt':
     fi0=abs(float(input('Zadejte tečnou rovnoběžku fi0():')))
     while fi0 == 0 or fi0>90:
-        print(f'Kuželove zobrazeni neni definovano pro {fo0}')
+        print(f'Kuželove zobrazeni neni definovano pro {fi0}')
         fi0=abs(float(input('Zadejte tečnou rovnoběžku fi0():')))
     Pt(r1,fi0,poled,rovn)
 elif zobrazeni=='Sa':
