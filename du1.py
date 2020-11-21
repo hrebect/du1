@@ -26,8 +26,6 @@ def Lv(r1,poled,rovn): #lambertovo zobrazeni valcove
         y_vyst=r1*0.3*math.sin(math.radians(y1))
         kartez(x_vyst,y_vyst)
         xy=body()
-    exitonclick()
-    pass
 
 def Ma(r1,poled,rovn): #Marinovo zobrazeni valcove
     # x=r*arc(lambda) > x=r1*v*math.pi/180
@@ -54,8 +52,6 @@ def Ma(r1,poled,rovn): #Marinovo zobrazeni valcove
         y_vyst=r1*0.3*y1*math.pi/180
         kartez(x_vyst,y_vyst)
         xy=body()
-    exitonclick()
-    pass
 
 def Po(r1,poled,rovn): #Postelovo zobrazeni azimutalni, je v polarnich souradnicich (ro,epsilon)
     #ro=r*arc(delta), delta=90-fi > ro=r1*(90-u)*math.pi/180
@@ -82,8 +78,6 @@ def Po(r1,poled,rovn): #Postelovo zobrazeni azimutalni, je v polarnich souradnic
         ro_vyst=r1*0.3*(90-y1)*math.pi/180 #vypocet souradnic bodu, ro je v mm eps je ve stupnich
         eps_vyst=x1
         polar(ro_vyst,eps_vyst)
-        xy=body()
-    exitonclick()
 
 def La(r1,poled,rovn): #Lambertovo zobrazeni azimutalni, je v polarnich souradnicich (ro,epsilon)
     #ro=2r*sin(delta/2), delta=90-fi > 2*r1*math.sin(math.radians((90-u)/2))
@@ -111,8 +105,6 @@ def La(r1,poled,rovn): #Lambertovo zobrazeni azimutalni, je v polarnich souradni
         eps_vyst=x1
         polar(ro_vyst,eps_vyst)
         xy=body()
-    exitonclick()
-    pass
 
 def Pt(r1,fi0,poled,rovn): #Ptolemaiovo zobrazeni kuzelove delkojevne podle rovnobezky fi0
     #eps= n*lambda > eps=n*v , n je velikost vysece
@@ -152,8 +144,6 @@ def Pt(r1,fi0,poled,rovn): #Ptolemaiovo zobrazeni kuzelove delkojevne podle rovn
         ro_vyst=r1*0.3*(math.tan(math.radians(90-fi0))+(90-y1-(90-fi0))*math.pi/180)
         polar(ro_vyst,eps_vyst)
         xy=body()
-    exitonclick()
-    pass
 
 def Sa(r1,poled,rovn): #sansonovo nepravé zobrazení
     #x=r*arc(lambda)*cos(fi) > x=r1*v*math.pi/180*math.cos(math.radians(u))
@@ -184,9 +174,6 @@ def Sa(r1,poled,rovn): #sansonovo nepravé zobrazení
         y_vyst=r1*0.3*y1*math.pi/180
         kartez(x_vyst,y_vyst)
         xy=body()
-    exitonclick()
-    pass
-
 
 def kartez(x_vyst,y_vyst):
     return( print('x={:.4} mm a y= {:.4} mm'.format(x_vyst,y_vyst))) #vypuse zadaný bod v pixelech
@@ -208,8 +195,24 @@ r=float(input('Zadejte polomer Země v km:'))
 rovn=int(input('Zadejte po kolika stupnich se vykresli rovnobezeky:'))
 poled=int(input('Zadejte po kolika stupnich se vykresli poledniky:'))
 
+#kontrola vstupů
+if rovn <= 0 or \ 
+    rovn > 90:
+    print(f'Nelze rovnoběžky vykreslit po {rovn} stupních')
+    exit()
+if poled <= 0 or \
+    poled > 360:
+    print(f'Nelze poledníky vykreslit po {poled} stupních')
+    exit()
+if r < 0:
+    print('?ěřítko musí být nezáporné')
+    exit()
 if r==0:
     r=6371.11
+if meritko <=0:
+    print('Měřítko musí být kladné číslo')
+    exit()
+
 r1=r*10**6/meritko/0.3 #polomer z km na mm a ty pak na pixely
 speed(0)
  
@@ -223,15 +226,14 @@ elif zobrazeni=='La':
     La(r1,poled,rovn)
 elif zobrazeni=='Pt':
     fi0=abs(float(input('Zadejte tečnou rovnoběžku fi0():')))
-    while fi0 == 0:
-        print('Kuželove zobrazeni neni definovano pro fi0=0')
+    while fi0 == 0 or fi0>90:
+        print(f'Kuželove zobrazeni neni definovano pro {fo0}')
         fi0=abs(float(input('Zadejte tečnou rovnoběžku fi0():')))
     Pt(r1,fi0,poled,rovn)
 elif zobrazeni=='Sa':
     Sa(r1,poled,rovn)
 else:
     print(f'zobrazení "{zobrazeni}" není definováno')
-
-
+exitonclick()
 
 
